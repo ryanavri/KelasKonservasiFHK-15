@@ -1,0 +1,892 @@
+---
+title: "Kelas Konservasi"
+subtitle: "Mengelola foto dan video hasil dari survei menggunakan kamera intai"
+author: "<br><br><br><strong>Ryan Avriandy</strong><br><br><br>Forum Harimaukita | April 2024"
+execute: 
+  echo: true
+format: 
+  revealjs:
+    width: 1600
+    height: 900
+    theme: "style.scss"
+    highlight-style: a11y-dark
+    logo: images/FF_Logo.png
+    link-external-newwindow: true
+    df-print: kable
+from: markdown+emoji
+---
+
+## Tujuan
+
+Presentasi ini akan membahas mengenai;
+
+-   Memberikan gambaran umum mengenai pengelolaan data kamera intai
+
+::: {.callout-important icon="warning"}
+## Limitasi
+
+Ada banyak cara dalam pengelolaan data, yang akan disajikan dalam presentasi ini adalah yang biasa kami lakukan
+:::
+
+## Alur kerja kamera intai
+
+::: r-stack
+![](images/Slide5.JPG){.fragment fig-align="center" width="1300"}
+
+![](images/Slide6.JPG){.fragment fig-align="center" width="1300"}
+
+![](images/Slide7.JPG){.fragment fig-align="center" width="1300"}
+
+![](images/Slide8.JPG){.fragment fig-align="center" width="1300"}
+:::
+
+## Skenario yang sering terjadi;
+
+-   Kamera yang dipasang tidak dilengkapi dengan catatan lapangan yang konsisten dan lengkap.
+-   Hasil yang diperoleh disalin ke komputer dalam struktur folder yang tidak teratur.
+-   Rekaman ditulis secara manual ke dalam lembar kerja (Excel).
+-   Sisa foto tidak dilanjutkan identifikasinya.
+
+## Data kamera intai
+
+::: columns
+::: {.column width="50%"}
+![](images/ctlink.jpg){width="550" height="600"}
+:::
+
+::: {.column width="50%"}
+1.  Foto / video
+2.  Data pemasangan (kapan + dimana)
+3.  Hubungan antara (1) dan (2)
+:::
+:::
+
+## Data pemasangan kamera
+
+::: columns
+::: {.column width="50%"}
+**Esensial**
+
+-   Nama stasiun
+
+-   Kordinat setiap stasiun
+
+-   Tanggal pemasangan kamera
+
+-   Tanggal kamera berhenti bekerja
+
+**Diupayakan**
+
+-   Kolom lainnya (Informasi lingkungan disekitar pemasangan kamera)
+:::
+
+::: {.column width="50%"}
+![](images/ctselfie.png){width="700" height="600"}
+:::
+:::
+
+## Prosedur Pengelolaan Data {.scrollable .smaller}
+
+::: columns
+::: {.column width="50%"}
+[Scotson et al. 2017](https://zslpublications.onlinelibrary.wiley.com/doi/10.1002/rse2.54) meninjau berbagai macam prosedur dan perangkat lunak yang ada untuk mengelola data kamera intai.
+
+Dalam panduan ini, kami mengadopsi protokol pengelolaan data kamera pengintai menggunakan '*camtrapR*' karena;
+
+-   Gratis
+
+-   Kapasitas penyimpanan tidak terbatas\*
+
+-   Fleksibilitas untuk analisis data yang lebih kompleks
+:::
+
+::: {.column width="50%"}
+![](images/paper1.jpg){width="650" height="700"}
+:::
+:::
+
+## Alur Kerja Pengelolaan Data {.scrollable .smaller}
+
+Alur kerja pengelolaan data dengan '*camtrapR*' dibagi menjadi lima bagian
+
+![](images/workflow.png){.r-stretch}
+
+## Organisir Data Kamera Intai:Langkah ke-1 {.scrollable .smaller}
+
+::: columns
+::: {.column width="50%"}
+Setelah mengunduh data dari kamera intai, kelola data tersebut dengan hirarki folder sebagai berikut;
+
+-   Nama lanskap
+
+-   Nama proyek / lokasi survei
+
+-   **Images_raw**
+
+-   Nama stasiun
+
+-   Foto/Video
+:::
+
+::: {.column width="50%"}
+![](images/org_1_1.png)
+:::
+:::
+
+## Organisir Data Kamera Intai:Langkah ke-2 {.scrollable .smaller}
+
+::: columns
+::: {.column width="50%"}
+Cadangkan data tersebut kedalam folder baru dan biarkan data \`mentah/raw\` tetap tersimpan sebagai cadangan atau rujukan apabila terdapat kesalahan dalam proses organisir data
+
+-   Nama lanskap
+
+-   Nama proyek / lokasi survei
+
+-   ***Images_renamed***
+
+-   Nama stasiun
+
+-   Foto/Video
+:::
+
+::: {.column width="50%"}
+![](images/org_2.png)
+:::
+:::
+
+## Organisir Data Kamera Intai:Langkah ke-3 {.scrollable .smaller}
+
+Mengganti nama setiap foto/video sehingga setiap data memiliki nama yang unik dan informatif untuk mempermudah proses verifikasi dari lembar data
+
+Dalam camtrapR dapat menggunakan fungsi 'imageRename()'
+
+Data tersebut akan diganti dengan format; NamaStasiun_YYY-MM-DD\_\_HH-MM-SS(n).JPG
+
+![](images/org_3.png)
+
+## Identifikasi spesies / individu {.scrollable .smaller}
+
+::: columns
+::: {.column width="35%"}
+Dari data mentah yang sudah disalin pada langkah ke-3, lakukan proses identifikasi dengan memindahkan foto ke dalam hirarki folder sebagai berikut;
+
+-   ***Images_renamed***
+
+-   Nama stasiun
+
+-   Nama spesies
+
+-   Foto/Video
+:::
+
+::: {.column width="65%"}
+![](images/org.png)
+:::
+:::
+
+## Identifikasi spesies - tips {.scrollable .smaller}
+
+::: columns
+::: {.column width="45%"}
+-   Identifikasi semua spesies
+-   Identifikasi hingga takson terendah
+-   Berikan nama unik untuk spesies yang belum bisa diidentifikasi hingga tingkat spesies
+
+<br><br>
+
+::: incremental
+-   Burung :x:
+-   Unidentified :x:
+-   *Pitta* sp1 :white_check_mark:
+-   Paok sp1 :white_check_mark:
+:::
+:::
+
+::: {.column width="55%"}
+![](images/PICT0108_1.JPG)
+:::
+:::
+
+# --- Step 1 --- <br> Memproses data kamera intai {background-color="#023B2C"}
+
+## Instalasi perangkat lunak yang dibutuhkan
+
+Komponen penting yang diperlukan untuk menggunakan camtrapR adalah perangkat lunak R studio dan Exiftool. Penjelasan dan langkah instalasi R studio dapat dilihat pada tautan berikut ini '[Panduan instalasi Rstudio.](https://ffionline-my.sharepoint.com/:b:/g/personal/ravriandy_fauna-flora_org/ETx2GFuyFMFNgFmxvMVXYvkBE7K12f_BpVfWlAj-fD-x2g?e=UU46yW)'
+
+::: {.callout-note icon="false"}
+## Instalasi Exiftool
+
+Exiftool digunakan untuk membaca dan menulis metadata dari gambar dan video. Untuk menggunakannya, unduh melalui situs ini; '[Exiftool](https://exiftool.org/install.html)' dengan cara sebagai berikut;.
+
+-   Pastikan mengunduh file *stand-alone executable*.
+
+-   Ekstrak berkas unduhan dari format (.zip).
+
+-   Ubah nama file "exiftool(-k).exe" yang terdapat di dalamnya menjadi "exiftool.exe"
+
+-   Simpan pada direktori "C:/Windows"
+
+Pastikan untuk mengikuti langkah-langkah tersebut agar dapat menggunakan exiftool dengan benar dan efektif.
+:::
+
+## Memuat pengaturan awal
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = T,
+	error = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+```{r load_data, include=FALSE}
+load("D:/simulasi_fhk/Round_1/results.RData")
+```
+
+```{r library}
+# Membuat daftar paket yang dibutuhkan
+package.list=c("exiftoolr", "camtrapR", "tidyverse", "lubridate", "sf", "mapview", "unmarked", "secr", "knitr", "kableExtra")
+
+# Mengunduh seluruh paket yang belum ada dan memuatnya kedalam sistem
+for (package in package.list) {
+  if (!require(package, character.only=T, quietly=T)) {
+    install.packages(package)
+    library(package, character.only=T)
+  }
+}
+```
+
+## Mengatur tempat penyimpanan data {.scrollable .smaller}
+
+Mengunduh semua data yang dibutuhkan pada tautan ini; [simulasi_fhk_kk_ct](https://ffionline-my.sharepoint.com/:f:/g/personal/ravriandy_fauna-flora_org/Ej_9-IsxD8tGnjdsgY5PSTwBsLXvUtd-MxM6a3_jZ7pLUQ?e=V5JR1R) Setelah itu ekstrak data yang dibutuhkan dan simpan ke dalam satu folder simulasi data.
+
+![](images/onefold.jpg)
+
+## Membuat cadangan data dan mengganti namanya
+
+Jalankan skrip dibawah ini untuk membuat cadangan data dan mengganti nama file foto/video
+
+```{r setup_dir, eval=FALSE}
+# Mengatur lokasi folder untuk analisis
+setwd("D:/simulasi_fhk/Round_1") #bisa diganti untuk directory yang berbeda
+
+# Mengatur lokasi folder kamera intai yang mau dianalisis
+images_raw <- "D:/simulasi_fhk/Round_1/images_raw"
+
+# Mengatur lokasi folder kamera intai yang akan diganti nama filenya
+images_renamed <- "D:/simulasi_fhk/Round_1/images_renamed"
+
+# Salin foto kamera intai ke dalam folder baru dan mengganti nama filenya
+renamed <- imageRename(inDir = images_raw,
+                       outDir = images_renamed,
+                       hasCameraFolders = FALSE,
+                       copyImages = TRUE)
+```
+
+## Menambahkan label hak cipta
+
+Jalankan skrip dibawah ini untuk membuat cadangan data dan mengganti nama file foto/video
+
+```{r setup_copyright, eval=FALSE}
+# Nama label hak cipta
+copyrightTagToAdd <- "FHK2014"
+
+# Menambahkan label hak cipta
+addCopyrightTag(inDir = images_renamed,
+                copyrightTag = copyrightTagToAdd,
+                askFirst = FALSE,
+                keepJPG_original = FALSE)
+```
+
+## Melakukan identifikasi dengan cara *drag & drop* {.smaller}
+
+Memindahkan foto/video ke dalam folder spesies
+
+![](images/twofold.jpg)
+
+## Membaca data kamera intai {.smaller}
+
+Kedua fungsi di bawah ini digunakan untuk membuat tabel deteksi spesies dan memeriksa nama latin yang digunakan dari pangkalan data [ITIS (Integrated Taxonomic Information System)](https://www.itis.gov/)
+
+::: panel-tabset
+### *Code*
+
+```{r read-images, eval=FALSE}
+# Membaca data kamera intai dan menyalinnya kedalam data tabular sebagai tabel deteksi spesies
+rec_db <- recordTable(inDir = images_renamed,
+                               IDfrom = "directory")
+
+# Memeriksa nama latin dengan pangkalan data ITIS
+splist <- unique(rec_db$Species)
+checkNames <- checkSpeciesNames (speciesNames = splist,
+                                  searchtype = "scientific")
+```
+
+### tabel 1
+
+```{r echo=FALSE}
+#| label: tbl-sp_ls
+#| tbl-cap: "Tabel deteksi spesies"
+#| tbl-cap-location: top
+
+library(knitr)
+library(kableExtra)
+
+rec_db %>%
+  head () %>%
+kable(format = "html", table.attr = "style='width:100%;'") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed"), 
+    full_width = FALSE,
+    font_size = 12)
+```
+
+### tabel 2
+
+```{r echo=FALSE}
+#| label: tbl-sp_namalatin
+#| tbl-cap: "Hasil inspeksi nama latin"
+#| tbl-cap-location: top
+
+library(knitr)
+library(kableExtra)
+
+kable(checkNames, format = "html", table.attr = "style='width:100%;'") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed"), 
+    full_width = FALSE,
+    font_size = 12)
+```
+:::
+
+## Menambahkan nama spesies kedalam setiap file
+
+```{r renamespesies, eval=FALSE}
+SpecNameAppend1 <- appendSpeciesNames(inDir            = images_renamed,
+                                      IDfrom           = "directory",
+                                      hasCameraFolders = FALSE,
+                                      removeNames      = FALSE,
+                                      writecsv         = FALSE)
+```
+
+![](images/threefold.jpg)
+
+## Membuat tabel deteksi ke lembar data
+
+```{r write-detection, eval=FALSE}
+# Membaca informasi stasiun kamera
+effort <- read.csv("effort.csv")
+
+# membuat data perjumpaan satwa sebagai data tabular
+detection <- rec_db %>% 
+  dplyr::select(Station, Species, DateTimeOriginal, Date, Time, FileName) %>%
+  inner_join(effort, by="Station") %>%
+  dplyr::select(Region, Site, Session, Station, Species, Date, Time,FileName) %>%
+  rename(Scientific.Name = Species) %>%
+  mutate(Taxon.Rank = NA) %>%
+  mutate(Age = NA) %>%
+  mutate(Sex = NA) %>%
+  mutate(Count = NA) %>%
+  mutate(Individual = NA) %>%
+  mutate(Notes = NA)
+
+# export data tersebut kedalam folder kerja
+write.csv(detection, "detection.csv")
+```
+
+## Mengingat prinsip data kamera intai {.scrollable .smaller}
+
+::: columns
+::: {.column width="55%"}
+![](images/ctlink.jpg){fig-align="center" width="1300"}
+:::
+
+::: {.column width="45%"}
+![](images/lembaran%20data.png)
+:::
+:::
+
+## Lembar dataset kamera intai {.scrollable .smaller}
+
+kedua data tersebut disimpan kedalam satu [lembar kerja](https://ffionline-my.sharepoint.com/:f:/g/personal/ravriandy_fauna-flora_org/Es57x1aIFXNMrFxP5ZWBTNkBvEHDWdqWMe7AO4kxs7z3KA?e=gFPJZF) dengan cuplikan sebagai berikut;
+
+::: r-stack
+![](images/Slide1.PNG){.fragment fig-align="center" width="1300"}
+
+![](images/Slide2.PNG){.fragment fig-align="center" width="1300"}
+
+![](images/Slide3.PNG){.fragment fig-align="center" width="1300"}
+
+![](images/Slide4.PNG){.fragment fig-align="center" width="1300"}
+:::
+
+## Membuat plot matriks kamera aktif
+
+::: panel-tabset
+### *Code*
+
+```{r camop, eval=FALSE}
+# Membuat matiks hari aktif kamera
+camop <- cameraOperation(CTtable = effort,
+                         stationCol = "Station",
+                         setupCol = "Setup_date",
+                         retrievalCol = "Retrieval_date",
+                         writecsv = FALSE,
+                         hasProblems = TRUE, #TRUE, ketika diketahui ada kamera yang tidak aktif hingga waktu pengambilan
+                         dateFormat = "%d-%b-%y")
+
+# Membuat plot matriks 
+camtrapR:::camopPlot(camop)
+```
+
+### plot
+
+```{r echo=FALSE}
+#| label: fig-camop-plot
+#| fig-cap: "Matriks waktu aktif kamera intai"
+#| fig-cap-location: bottom
+
+camtrapR:::camopPlot(camop)
+```
+:::
+
+## Membuat ringkasan usaha kamera intai {.scrollable .smaller}
+
+::: panel-tabset
+### *Code*
+
+```{r effortsummary, eval=FALSE}
+# Menghitung total efektif kamera dan rerata per kamera intai
+effective_trap_nights <- rowSums(camop, na.rm = T) %>%
+  as.data.frame() %>%
+  colSums(.)
+mean_trap_nights_per_camera <- rowSums(camop, na.rm = T) %>%
+  as.data.frame() %>%
+  colMeans(.)
+
+# Total stasiun
+total_stations <- nrow(camop)
+
+# Jarak rerata antar kamera terdekat
+nd_ct <- st_as_sf(effort, coords = c("Longitude", "Latitude"),
+                  crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
+dist.mat <- st_distance(nd_ct)
+mean_distance_camtrap <- mean(nn.dist <- apply(dist.mat, 1, function(x) {
+  return(sort(x, partial = 2)[2])
+}))
+
+# Menggabungkan semua informasi diatas
+summary_effort <- round(rbind(effective_trap_nights, mean_trap_nights_per_camera, total_stations, mean_distance_camtrap)) %>% as.data.frame()
+```
+
+### tabel
+
+```{r echo=FALSE}
+#| label: tbl-sp_effsu
+#| tbl-cap: "Ringkasan usaha kamera intai"
+#| tbl-cap-location: top
+
+library(knitr)
+library(kableExtra)
+
+kable(summary_effort)
+```
+:::
+
+## Membuat ringkasan temuan satwa {.scrollable .smaller}
+
+::: panel-tabset
+### *Code*
+
+```{r spsummary, eval=FALSE}
+# Menambahkan satu kolom berisi tanggal dan waktu sekaligus
+detection <- detection %>%
+  mutate(DateTimeOriginal = as.POSIXct(paste(Date, Time)))
+
+# Membuat independent event dengan batas waktu 30 menit
+detection_30m <- detection %>%
+  filter(!Scientific.Name=='StartEnd') %>% #Mengeluarkan tim yang memasang dan melepas kamera
+  camtrapR:::assessTemporalIndependence(deltaTimeComparedTo = "lastIndepentRecord",
+                                        columnOfInterest = "Scientific.Name",
+                                        stationCol = "Station",
+                                        minDeltaTime = 30,
+                                        camerasIndependent = FALSE) %>%
+  drop_na(Scientific.Name) %>%
+  dplyr::select(Station, Scientific.Name, DateTimeOriginal, FileName, n_images) %>%
+  mutate(IE = 1)
+
+# Membuat ringkasan temuan satwa
+sum_table <- detection_30m %>%
+  group_by(Scientific.Name) %>%
+  summarise(
+    n_images = sum(n_images),
+    IE = sum(IE),
+    n_locs = n_distinct(Station)) %>%
+  ungroup() %>%
+  mutate(RAI = IE / (effective_trap_nights/ 100),
+         `raw_occ` = n_locs / total_stations) %>%
+  mutate(across(5:last_col(), ~round(., 2))) %>%
+  arrange(desc(n_images))
+
+# Membuat plot ringkasan temuan satwa
+layout(matrix(c(1,1,2), 1, 3, byrow = TRUE))
+par(mar=c(5,16,1,1))
+barplot(sum_table$IE,
+        names.arg = as.expression(lapply(sum_table$Scientific.Name, function(x) bquote(italic(.(x))))),
+        las = 1, cex.names = 1, xlab = "Independent event", horiz = TRUE)
+par(mar=c(5,1,1,1))
+barplot(sum_table$raw_occ, las=1, cex.names=0.7, xlab="Proportion of sites detected", horiz=T, xlim=c(0,1))
+```
+
+### tabel
+
+```{r echo=FALSE}
+#| label: tbl-sp_spsum
+#| tbl-cap: "Ringkasan temuan satwa"
+#| tbl-cap-location: top
+
+library(knitr)
+library(kableExtra)
+
+kable(sum_table)
+```
+
+### plot
+
+```{r echo=FALSE}
+#| label: fig-spsum_plot
+#| fig-cap: "Plot ringkasan temuan satwa"
+#| fig-cap-location: bottom
+
+sum_table <- sum_table %>%
+  dplyr::arrange(IE)
+
+layout(matrix(c(1,1,2), 1, 3, byrow = TRUE))
+par(mar=c(5,16,1,1))
+barplot(sum_table$IE,
+        names.arg = as.expression(lapply(sum_table$Scientific.Name, function(x) bquote(italic(.(x))))),
+        las = 1, cex.names = 1, xlab = "Independent event", horiz = TRUE)
+par(mar=c(5,1,1,1))
+barplot(sum_table$raw_occ, las=1, cex.names=0.7, xlab="Proportion of sites detected", horiz=T, xlim=c(0,1))
+```
+:::
+
+# --- Step 2 --- <br> Ekplorasi data lebih lanjut {background-color="#023B2C"}
+
+## Memuat dataset baru
+
+::: {.callout-important icon="warning"}
+## Perhatian
+
+Karena data kamera sebenarnya terikat dengan Perjanjian Kerahasiaan ([NDA](https://glints.com/id/lowongan/nda-adalah/)), untuk kelas ini kita akan menggunakan data yang dapat diakses publik melalui situs [DRYAD](https://datadryad.org/stash). Data yang disajikan sudah diedit untuk memudahkan praktik, sehingga hasil dari simulasi ini tidak menggambarkan hasil nyata dari penulis aslinya
+:::
+
+![](images/dryad.png){fig-align="center"}
+
+```{r load2nddataset, include=FALSE}
+load("D:/simulasi_fhk/Round_2/prog2.RData")
+```
+
+## Memuat dataset baru
+
+::: panel-tabset
+### *Code*
+
+```{r updatedataset, eval=FALSE}
+# Mengatur lokasi folder untuk analisis
+setwd("D:/simulasi_fhk/Round_2") #bisa diganti untuk directory yang berbeda
+
+# Membaca data stasiun kamera yang baru
+effort <- read.csv("station_adv.csv")
+
+# Membaca data deteksi satwa yang baru
+detection <- read.csv("detection_adv.csv")
+detection <- detection %>%
+  mutate(DateTimeOriginal = as.POSIXct(paste(Date, Time), format = "%d-%b-%y %H:%M"))
+```
+
+### tabel
+
+```{r echo=FALSE}
+#| label: tbl-sp_sureffadv
+#| tbl-cap: "Ringkasan usaha survei"
+#| tbl-cap-location: top
+
+library(knitr)
+library(kableExtra)
+
+kable(summary_effort_adv)
+```
+
+### plot 1
+
+```{r echo=FALSE}
+#| label: fig-camop-plotadv
+#| fig-cap: "Matriks waktu aktif kamera intai"
+#| fig-cap-location: bottom
+
+camtrapR:::camopPlot(camop_adv)
+```
+
+### plot 2
+
+```{r echo=FALSE}
+#| label: fig-spsumplotadv
+#| fig-cap: "Plot ringkasan temuan satwa"
+#| fig-cap-location: bottom
+
+sum_table_adv <- sum_table_adv %>%
+  dplyr::arrange(IE)
+layout(matrix(c(1,1,2), 1, 3, byrow = TRUE))
+par(mar=c(5,16,1,1))
+barplot(sum_table_adv$IE,
+        names.arg = as.expression(lapply(sum_table_adv$Scientific.Name, function(x) bquote(italic(.(x))))),
+        las = 1, cex.names = 1, xlab = "Independent event", horiz = TRUE)
+par(mar=c(5,1,1,1))
+barplot(sum_table_adv$raw_occ, las=1, cex.names=0.7, xlab="Proportion of sites detected", horiz=T, xlim=c(0,1))
+```
+:::
+
+## Memetakan sebaran spesies {.smaller .scrollable}
+
+::: panel-tabset
+### *Code*
+
+```{r makemapsp, eval=FALSE}
+# Membuat data sebaran spesies
+map_sp <- detectionMaps(CTtable      = effort,
+                        recordTable  = detection,
+                        Xcol         = "Longitude",
+                        Ycol         = "Latitude",
+                        stationCol   = "Station",
+                        speciesCol   = "Scientific.Name",
+                        printLabels  = TRUE,
+                        richnessPlot = FALSE,
+                        speciesPlots = FALSE,
+                        addLegend    = TRUE
+)
+
+# Menampilkan sebaran spesies di peta
+map_sp <- st_as_sf(map_sp, coords = c("Longitude", "Latitude"),
+                   crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
+mapview(map_sp, zcol = "n_species", layer.name = "Species Number")
+
+# Membuat file shapefile dari data tersebut
+output_shapefile <- "D:/simulasi_fhk/Round_2/sebaran.shp"
+
+# Export temuan spesies ke shapefile
+st_write(map_sp, output_shapefile)
+```
+
+### Peta interaktif
+
+```{r echo=FALSE}
+#| label: fig-mapsp
+#| fig-cap: "Peta interaktif sebaran satwa"
+#| fig-cap-location: bottom
+
+load("D:/simulasi_fhk/Round_2/prog3.RData")
+mapview(map_sp, zcol = "n_species", layer.name = "Species Number", width = "100%", height = 600)
+```
+:::
+
+## Membuat grafik aktivitas satwa
+
+```{r adj-code, include=FALSE}
+detection_30m <- detection %>%
+    filter(!Scientific.Name=='StartEnd') %>% #Mengeluarkan tim yang memasang dan melepas kamera
+    camtrapR:::assessTemporalIndependence(deltaTimeComparedTo = "lastIndepentRecord",
+                                          columnOfInterest = "Scientific.Name",
+                                          stationCol = "Station",
+                                          minDeltaTime = 30,
+                                          camerasIndependent = FALSE) %>%
+    drop_na(Scientific.Name) %>%
+    dplyr::select(Station, Scientific.Name, DateTimeOriginal, FileName, n_images) %>%
+    mutate(IE = 1)
+```
+
+::: panel-tabset
+### *Code*
+
+```{r act_table, eval=FALSE}
+# Membuat grafik aktivitas satwa
+detection_30m$Species <- detection_30m$Scientific.Name
+
+# Membuat pola aktivitas bobcat
+activityDensity(recordTable = detection_30m,
+                species     = 'Lynx rufus') # ganti nama spesies ini untuk satwa lainnya
+
+# Membuat pola aktivitas tumpang tindih antara 2 spesies
+activityOverlap (recordTable = detection_30m,
+                 speciesA = "Lynx rufus",
+                 speciesB = "Ursus americanus",
+                 plotR = TRUE,
+                 pngMaxPix = 1000,
+                 linecol = c("black", "blue"),
+                 linewidth = c(5,3),
+                 linetype = c(1, 2),
+                 olapcol = "darkgrey",
+                 add.rug = TRUE,
+                 extend = "lightgrey",
+                 ylim = c(0, 0.25),
+                 main = paste("Tumpang tindih: ", "Lynx rufus", "-", "Ursus americanus")
+)
+```
+
+### Plot Aktivitas
+
+```{r echo=FALSE}
+# Membuat pola aktivitas bobcat
+detection_30m$Species <- detection_30m$Scientific.Name
+activityDensity(recordTable = detection_30m,
+                species     = 'Lynx rufus') # ganti nama spesies ini untuk satwa lainnya
+```
+
+### Plot Tumpang Tindih
+
+```{r echo=FALSE}
+# Membuat pola aktivitas tumpang tindih antara 2 spesies
+activityOverlap (recordTable = detection_30m,
+                 speciesA = "Lynx rufus",
+                 speciesB = "Ursus americanus",
+                 plotR = TRUE,
+                 pngMaxPix = 1000,
+                 linecol = c("black", "blue"),
+                 linewidth = c(5,3),
+                 linetype = c(1, 2),
+                 olapcol = "darkgrey",
+                 add.rug = TRUE,
+                 extend = "lightgrey",
+                 ylim = c(0, 0.25),
+                 main = paste("Tumpang tindih: ", "Lynx rufus", "-", "Ursus americanus")
+)
+```
+:::
+
+# --- Step 3 --- <br> Membuat matriks deteksi untuk analisis okupansi {background-color="#023B2C"}
+
+## Membuat matriks deteksi untuk analisis okupansi {.scrollable .smaller}
+
+```{r occumatrix}
+DetHist <- detectionHistory(recordTable          = detection,
+                            camOp                = camop_adv,
+                            stationCol           = "Station",
+                            speciesCol           = "Scientific.Name",
+                            recordDateTimeCol    = "DateTimeOriginal",
+                            species              = "Lynx rufus", #ganti untuk spesies lain
+                            occasionLength       = 5, #ganti nilai ini jika diperlukan
+                            day1                 = "station",
+                            datesAsOccasionNames = FALSE,
+                            includeEffort        = TRUE,
+                            scaleEffort          = FALSE)
+
+# Melihat matriks deteksi
+DetHist$detection_history
+
+# Melihat usaha per deteksi
+DetHist$effort
+
+# Melihat ringkasan data
+umf <- unmarkedFrameOccu(y=DetHist[["detection_history"]])
+summary(umf)
+```
+
+# --- Step 4 --- <br> Membuat matriks deteksi untuk analisis kepadatan satwa {background-color="#023B2C"}
+
+## Membuat matriks deteksi untuk analisis kepadatan satwa {.scrollable .smaller}
+
+```{r convertcoord}
+# Konversi koordinat dari effort
+
+# Transfrom dataframe menjadi objek spasial
+effort_sf <- st_as_sf(effort, coords = c("Longitude", "Latitude"), crs = 4326)
+
+# Konversi koordinat dan menambahkan ke dalam dataframe
+effort_sf_utm <- st_transform(effort_sf, crs =32617) 
+effort$utm_x <- st_coordinates(effort_sf_utm)[, 1]
+effort$utm_y <- st_coordinates(effort_sf_utm)[, 2]
+```
+
+## Membuat matriks deteksi untuk analisis kepadatan satwa {.scrollable .smaller}
+
+```{r makesecrmatriksmocks, eval=FALSE}
+sdh <- spatialDetectionHistory(recordTableIndividual = detection, 
+                               species               = "Lynx rufus", #spesies yang akan dianalisis 
+                               output                = "binary",
+                               camOp                 = camop, 
+                               CTtable               = effort,
+                               stationCol            = "Station", 
+                               speciesCol            = "Scientific.Name",
+                               Xcol                  = "utm_x",
+                               Ycol                  = "utm_y",
+                               individualCol         = "Individual",
+                               recordDateTimeCol     = "DateTimeOriginal",
+                               recordDateTimeFormat  = "%Y-%m-%d %H:%M:%S",
+                               occasionLength        = 5, 
+                               day1                  = "station",
+                               includeEffort         = TRUE,
+                               timeZone              = "Asia/Kuala_Lumpur")
+```
+
+```{r makesecrmatriks, include=FALSE}
+sdh <- spatialDetectionHistory(recordTableIndividual = detection, 
+                               species               = "Lynx rufus", #spesies yang akan dianalisis 
+                               output                = "binary",
+                               camOp                 = camop_adv, 
+                               CTtable               = effort,
+                               stationCol            = "Station", 
+                               speciesCol            = "Scientific.Name",
+                               Xcol                  = "utm_x",
+                               Ycol                  = "utm_y",
+                               individualCol         = "Individual",
+                               recordDateTimeCol     = "DateTimeOriginal",
+                               recordDateTimeFormat  = "%Y-%m-%d %H:%M:%S",
+                               occasionLength        = 5, 
+                               day1                  = "station",
+                               includeEffort         = TRUE,
+                               timeZone              = "Asia/Kuala_Lumpur")
+```
+
+```{r sumsecr}
+# Melihat ringkasan matriks deteksi individu
+summary(sdh)
+
+# Melihat plot pergerakan individu
+plot(sdh, track=T)
+```
+
+```{r makemask}
+# Membuat buffer
+my_traps <- traps(sdh)
+my_mask <- make.mask(my_traps,
+                     buffer = 2500,
+                     spacing = 500, type = "trapbuffer")
+
+# Melihat buffer dengan lokasi kamera 
+plot(my_mask)
+plot(my_traps, add=T)
+```
+
+## Terima Kasih!
+
+::: columns
+::: {.column width="65%"}
+🙏🏼 **Mohon beritahu saya penilaian anda terkait materi ini melalui [survei singkat](https://forms.office.com/e/4dJ8jHN7av)** ini;
+
+![](images/QRCode_KK.png){fig-align="center" width="300" height="300"}
+
+:house_with_garden: **Material:** [Kelas Konservasi #15](https://github.com/ryanavri/KelasKonservasiFHK-15)
+:::
+
+::: {.column width="35%"}
+**Menjalin silaturahmi!**
+
+:link: [linkedin](https://www.linkedin.com/in/ryan-avriandy-951b97156/)
+
+🖥 [github](https://github.com/ryanavri)
+
+:bird: [twitter/x](https://twitter.com/ryanavri)
+:::
+:::
