@@ -1,0 +1,4 @@
+- source: indeks.qmd
+  quarto-pub:
+    - id: f7d3fbfe-98b4-43d6-911c-43bd6c3f8d33
+      url: 'https://ryanavri.quarto.pub/kelas-konservasi-fhk15'
