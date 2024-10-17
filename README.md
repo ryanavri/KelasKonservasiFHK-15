@@ -1,7 +1,11 @@
-# KelasKonservasiFHK-15
+# Kelas Konservasi FHK-15
 
-This repository hosts the materials for "Kelas Konservasi FHK-15," in quarto slide format.
+This repository hosts the materials for **Kelas Konservasi FHK-15**, in Quarto slide format. The slides cover various topics related to conservation, discussed during the class sessions.
 
-## Accessing Materials
-1. For slide materials, navigate to the **Slides/** directory.
-2. For exercise materials, access them via the provided [OneDrive Link](https://ffionline-my.sharepoint.com/:f:/g/personal/ravriandy_fauna-flora_org/EkGAnjx4M5tLloO6W1oLCP8BCU7yj90jV_YQ7GgmPx5muw?e=lTgyU5).
+## Presentation Recording
+
+The recording of the session is accessible [here]([youtube link](https://www.youtube.com/watch?v=kMySaFo_V1M&t=67s&pp=ygUTa2VsYXMga29uc2VydmFzaSAxNQ%3D%3D)).
+
+## Presentation Slides
+
+The presentation slides can be accessed [here](link to the slides).
